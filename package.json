@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build":"webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -w server/Server.js --exec \"babel-node server/Server.js\"",
     "wp": "webpack -w",
