@@ -1,9 +1,10 @@
 let path = require('path');
 module.exports = {
-    entry: { app: ['./src/app/App.js'] },
+    entry: { 
+        app: ['./src/app/App.js'] },
     output: {
         path: path.resolve(__dirname, 'dist/public/js'),
-        publicPath: '/assets/',
+        publicPath: '/js/',
         filename: "[name].js"
     },
     devServer: {

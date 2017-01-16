@@ -2,12 +2,26 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import express from 'express';
 
-const app = express(); 
+
+import path from 'path';
+
+const app = express();
+const router = express.Router();
+const viewPath = path.join(__dirname, 'views');
+
+app.set('views', viewPath);
+app.set('view engine', 'ejs');
+
 app.use(express.static('./dist/public'));
 
+app.get('/', function (req, res) {
+  res.render('pages/index');
+})
 
-app.get('/api/', function (req, res) {
-  res.send('hello')
+
+
+app.get('/api', function (req, res) {
+  res.render('pages/index');
 })
 
 app.listen(3000, function () {
