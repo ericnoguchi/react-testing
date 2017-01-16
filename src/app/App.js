@@ -1,5 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom'; 
+import ReactDOM from 'react-dom';
+import AppComponent from './Components/App.jsx';
 
-console.log(44)
- 
+
+ReactDOM.render(<AppComponent />,
+    document.getElementById('reactMount'));
