@@ -3,10 +3,10 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import express from 'express';
 import path from 'path';
-import AppComponent from '../src/app/Components/App.jsx';
+import { AppComponent } from '../src/app/Components/App.jsx';
 
-let a = {a:1};
-let b = {c:1, ...a};
+let a = { a: 1 };
+let b = { c: 1, ...a };
 
 const app = express();
 const router = express.Router();
