@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack -p",
-    "buildServer": "babel server -d distServer --copy-files --plugins transform-es2015-modules-commonjs",
+    "buildServer": "babel server -d distServer --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -w server/Server.js --exec \"babel-node server/Server.js\"",
     "startBuildServer": "node distServer/Server",

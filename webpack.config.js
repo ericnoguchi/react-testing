@@ -13,7 +13,7 @@ fs.readdirSync('node_modules')
 
 module.exports = {
     entry: {
-        app: ['./src/app/App.js']
+        app: ['./src/app/index.jsx']
     },
     output: {
         path: path.resolve(__dirname, 'dist/public/js'),
