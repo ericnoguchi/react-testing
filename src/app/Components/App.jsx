@@ -5,7 +5,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            initData : props.initData || window.__INITIAL_STATE__
+            initData : props.initData || window.__INITIAL_STATE__ || {}
         };
     }
     render() {
