@@ -5,8 +5,6 @@ import express from 'express';
 import path from 'path';
 import { AppComponent } from '../src/app/Components/App.jsx';
 
-let a = { a: 1 };
-let b = { c: 1, ...a };
 
 const app = express();
 const router = express.Router();
@@ -20,8 +18,8 @@ app.use(express.static('./dist/public'));
 app.get('/', (req, res) => {
 
   const initData = { x: (new Date).toTimeString() };
-
-  const ren = renderToString(<AppComponent initData={initData} />);
+  const AppCom = <AppComponent initData={initData} />
+  const ren = renderToString(AppCom);
 
   res.render('pages/index', {
     AppComponent: ren,
