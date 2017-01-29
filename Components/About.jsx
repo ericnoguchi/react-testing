@@ -8,5 +8,5 @@ export class About extends Component {
       <div className="container">about me</div>
     );
   }
-} v
+}
 

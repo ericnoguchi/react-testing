@@ -18,7 +18,7 @@ expressRouter.get('*', (req, res) => {
             const html = renderToString(<RouterContext {...renderProps}
                 createElement={(Component, renderProps) =>
                     <Component {...renderProps} {...props} />} />);
-            res.send('<!DOCTYPE html>' + html);
+            res.send(`<!DOCTYPE html>${html}`);
 
         } else {
             res.status(404).send();
