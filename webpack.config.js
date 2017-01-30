@@ -1,4 +1,5 @@
 let path = require('path');
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
     entry: {
@@ -27,5 +28,8 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new LiveReloadPlugin()
+    ]
 };

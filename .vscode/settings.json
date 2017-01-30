@@ -1,8 +1,16 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "editor.fontSize": 19,
+    "editor.fontSize": 20,
     "terminal.integrated.fontSize": 19,
     "editor.fontLigatures": true,
-    "editor.fontFamily": "Fira Code"
+    "editor.fontFamily": "Fira Code",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/node_modules":true
+    },
+    "editor.formatOnSave": true
 
 }
