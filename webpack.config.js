@@ -3,18 +3,21 @@ let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let webpack = require('webpack');
 
 module.exports = {
+    devtool: 'source-map',
     entry: {
-        'app': './@Client.js',
-        'vendor': [
+        vendor: [
             "react",
             "react-dom",
             "react-router"
         ],
+        app: './@Client.js',
+        // about: './Components/About/about.scss',
+        // layout: './Components/Layout/layout.scss'
     },
     output: {
         path: __dirname + '/_dist',
         publicPath: '/',
-        filename: "[name].js"
+        filename: "js/[name].js"
     },
     // externals: {
     //     "react": 'React',
@@ -25,25 +28,17 @@ module.exports = {
         contentBase: '_dist'
     },
     module: {
-        loaders: [
-            {
+        rules: [{
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
+                    use: ['css-loader?sourceMap!sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true']
                 })
             },
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
-                query: {
-                    presets: [
-                        "react",
-                        "es2015",
-                        "stage-2"
-                    ]
-                }
+                loader: 'babel-loader'
             }
         ]
     },
@@ -53,12 +48,15 @@ module.exports = {
                 BROWSER: JSON.stringify(true)
             }
         }),
+
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.js',
+            names: ['vendor'],
             minChunks: Infinity
         }),
-        new ExtractTextPlugin("css/[name].css"),
+        new ExtractTextPlugin({
+            filename: "css/[name].css",
+            //allChunks: true
+        }),
         new LiveReloadPlugin()
     ]
 };
