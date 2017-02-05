@@ -1,20 +1,38 @@
-let path = require('path');
-var LiveReloadPlugin = require('webpack-livereload-plugin');
+let LiveReloadPlugin = require('webpack-livereload-plugin');
+let ExtractTextPlugin = require("extract-text-webpack-plugin");
+let webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: ['./@Client.js']
+        'app': './@Client.js',
+        'vendor': [
+            "react",
+            "react-dom",
+            "react-router"
+        ],
     },
     output: {
-        path: path.resolve(__dirname, 'dist/public/js'),
-        publicPath: '/js/',
+        path: __dirname + '/_dist',
+        publicPath: '/',
         filename: "[name].js"
     },
+    // externals: {
+    //     "react": 'React',
+    //     "react-dom": 'ReactDOM',
+    //     "react-router": 'ReactRouter'
+    // },
     devServer: {
-        contentBase: 'dist/public/'
+        contentBase: '_dist'
     },
     module: {
         loaders: [
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
+            },
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
@@ -30,6 +48,17 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            "process.env": {
+                BROWSER: JSON.stringify(true)
+            }
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.js',
+            minChunks: Infinity
+        }),
+        new ExtractTextPlugin("css/[name].css"),
         new LiveReloadPlugin()
     ]
 };

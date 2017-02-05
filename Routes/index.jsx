@@ -13,15 +13,20 @@ expressRouter.get('*', (req, res) => {
         routes: routes,
         location: req.url
     }, (err, redirectLocation, renderProps) => {
-        if (renderProps) {
-
+        if (err) {
+            res.status(500).send(err.message)
+        } else if (redirectLocation) {
+            res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+        }
+        else if (renderProps) {
             const html = renderToString(<RouterContext {...renderProps}
                 createElement={(Component, renderProps) =>
                     <Component {...renderProps} custom={props} />} />);
+
             res.send(`<!DOCTYPE html>${html}`);
 
         } else {
-            res.status(404).send();
+            res.status(404).send('route not found');
         }
     });
 })
