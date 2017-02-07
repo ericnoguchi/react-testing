@@ -1,13 +1,13 @@
-const LiveReloadPlugin = require('webpack-livereload-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const webpack = require('webpack');
-const path = require('path');
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import LiveReloadPlugin from 'webpack-livereload-plugin';
+import path from 'path';
+import webpack from 'webpack';
 
 const NODE_ENV = process.env.NODE_ENV;
 const isProduction = NODE_ENV === 'production';
 const isDevelopment = !isProduction;
 
-module.exports = {
+export default {
     //https://webpack.js.org/configuration/devtool/
     devtool: isDevelopment ? 'source-map' : false,
     entry: {
