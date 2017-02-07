@@ -12,5 +12,6 @@
         "**/node_modules": false,
         "**/.vscode": false
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "vsicons.presets.angular": false
 }
