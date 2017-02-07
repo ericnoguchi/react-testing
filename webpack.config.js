@@ -38,7 +38,28 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                options: {
+                    babelrc: false,
+                    presets: [
+                        ["es2015", {
+                            "modules": false
+                        }],
+                        "react",
+                        "stage-2"
+                    ],
+                    "plugins": [
+                        [
+                            "transform-runtime",
+                            {
+                                "helpers": false, // defaults to true
+                                "polyfill": false, // defaults to true
+                                "regenerator": false, // defaults to true
+                                "moduleName": "babel-runtime" // defaults to "babel-runtime"
+                            }
+                        ]
+                    ]
+                }
             }
         ]
     },

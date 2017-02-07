@@ -5,8 +5,7 @@ import { Index } from '../Components/Index.jsx'
 import { About } from '../Components/About/About.jsx'
 import { PageNotFound } from '../Components/PageNotFound.jsx';
 
-
-const createElement = (typeof window === 'object') ? (Component, props) => <Component {...props} custom={window.PROPS} /> : null;
+const createElement = (process.env.BROWSER) ? (Component, props) => <Component {...props} custom={window.PROPS} /> : null;
 
 export default (
     <Router history={browserHistory} createElement={createElement}>
