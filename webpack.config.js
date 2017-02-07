@@ -1,9 +1,15 @@
-let LiveReloadPlugin = require('webpack-livereload-plugin');
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
-let webpack = require('webpack');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+
+const NODE_ENV = process.env.NODE_ENV;
+const isProduction = NODE_ENV === 'production';
+const isDevelopment = !isProduction;
 
 module.exports = {
-    devtool: 'source-map',
+    //https://webpack.js.org/configuration/devtool/
+    devtool: isDevelopment ? 'source-map' : false,
     entry: {
         vendor: [
             "react",
@@ -11,19 +17,13 @@ module.exports = {
             "react-router"
         ],
         app: './@Client.js',
-        // about: './Components/About/about.scss',
-        // layout: './Components/Layout/layout.scss'
     },
+    // https://webpack.js.org/configuration/output/
     output: {
-        path: __dirname + '/_dist',
+        path: path.resolve(__dirname, '_dist'),
         publicPath: '/',
         filename: "js/[name].js"
     },
-    // externals: {
-    //     "react": 'React',
-    //     "react-dom": 'ReactDOM',
-    //     "react-router": 'ReactRouter'
-    // },
     devServer: {
         contentBase: '_dist'
     },
@@ -55,7 +55,6 @@ module.exports = {
         }),
         new ExtractTextPlugin({
             filename: "css/[name].css",
-            //allChunks: true
         }),
         new LiveReloadPlugin()
     ]

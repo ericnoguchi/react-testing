@@ -1,8 +1,12 @@
 $color: skyblue;
 body {
     background: $color;
-    box-sizing: border-box;
-    transform: translate(0, 0);
     border-radius: 5px;
-    display: flex
+    box-sizing: border-box;
+    display: flex;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 2px;
+    padding-top: 1px;
+    transform: translate(0, 0);
 }

@@ -8,5 +8,5 @@ app.use(express.static('./_dist'));
 app.use(routes);
 
 app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+  console.log(`Listening on port 3000! running in ${process.env.NODE_ENV} mode`);
 })
