@@ -16,12 +16,12 @@ export default {
             "react-dom",
             "react-router"
         ],
-        app: './@Client.js',
+        'app': ['./@Client.js'],
     },
     // https://webpack.js.org/configuration/output/
     output: {
         path: path.resolve(__dirname, '_dist'),
-        publicPath: '/',
+        publicPath: '',
         filename: "js/[name].js"
     },
     devServer: {
@@ -60,10 +60,16 @@ export default {
                         ]
                     ]
                 }
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: "file-loader?name=/img/[name][hash].[ext]"
             }
+
         ]
     },
     plugins: [
+        // https://webpack.js.org/plugins/define-plugin/
         new webpack.DefinePlugin({
             "process.env": {
                 BROWSER: JSON.stringify(true)
