@@ -1,5 +1,6 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import LiveReloadPlugin from 'webpack-livereload-plugin';
+import autoprefixer from 'autoprefixer';
 import path from 'path';
 import webpack from 'webpack';
 
@@ -9,7 +10,7 @@ const isDevelopment = !isProduction;
 
 export default {
     //https://webpack.js.org/configuration/devtool/
-    devtool: isDevelopment ? 'source-map' : false,
+    devtool: isDevelopment && 'source-map',
     entry: {
         vendor: [
             "react",
@@ -32,7 +33,29 @@ export default {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader?sourceMap!autoprefixer-loader!sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true']
+                    use: [{
+                            // https://github.com/webpack-contrib/css-loader
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => [autoprefixer]
+                            }
+                        },
+                        {
+                            // https://github.com/jtangelder/sass-loader
+                            loader: 'sass-loader',
+                            options: {
+                                outputStyle: 'expanded',
+                                sourceMap: true,
+                                sourceMapContents: true
+                            }
+                        }
+                    ]
                 })
             },
             {
@@ -62,8 +85,14 @@ export default {
                 }
             },
             {
+                // https://github.com/webpack-contrib/file-loader
+                // https://github.com/webpack-contrib/url-loader
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: "file-loader?name=/img/[name][hash].[ext]"
+                loader: 'url-loader',
+                options: {
+                    limit: '10000',
+                    name: '/img/[name].[ext]'
+                }
             }
 
         ]
@@ -82,6 +111,7 @@ export default {
         }),
         new ExtractTextPlugin({
             filename: "css/[name].css",
+            disable: false
         }),
         new LiveReloadPlugin()
     ]

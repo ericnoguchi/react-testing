@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import {add} from '../tree-shaking-test.js';
+import { add } from '../tree-shaking-test.js';
 
 // http://stackoverflow.com/questions/30347722/importing-css-files-in-isomorphic-react-components
-process.env.BROWSER  && require('./layout.scss');
+process.env.BROWSER && require('./layout.scss');
 
 
 export class Layout extends Component {
   handleClick() {
+    console.log(add(3, 3))
 
-    alert(add(3,3)); 
   }
   render() {
     let {custom, children} = this.props;
