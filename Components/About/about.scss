@@ -1,6 +1,7 @@
-@import '../../Common/scss/main';
+@import 'main';
 $main-image-path: '../../Common/img';
 body {
+    background-color: $background;
     background-image: url('./download.jpg');
     background-repeat: no-repeat;
 }

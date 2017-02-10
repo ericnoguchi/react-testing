@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "wpp": "rimraf ./_dist && cross-env NODE_ENV=production webpack -p",
-    "wp": "rimraf ./_dist && webpack",
+    "build": "rimraf ./_dist && cross-env NODE_ENV=production webpack -p",
+    "dev": "rimraf ./_dist && webpack",
     "buildServer": "babel server -d distServer --copy-files",
     "start": "rimraf ./_dist && cross-env NODE_ENV=development concurrently --kill-others \"npm run startDev\" \"npm run startServer\"",
     "startDev": "webpack -w",

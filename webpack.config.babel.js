@@ -52,7 +52,8 @@ export default {
                             options: {
                                 outputStyle: 'expanded',
                                 sourceMap: true,
-                                sourceMapContents: true
+                                sourceMapContents: true,
+                                includePaths: path.resolve(__dirname, 'common/scss')
                             }
                         }
                     ]
