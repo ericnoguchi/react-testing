@@ -40,9 +40,7 @@ export class Layout extends Component {
             __html: 'window.PROPS=' + JSON.stringify(custom)
           }}></script>
 
-          {/*<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js" />
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js" />
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/3.0.2/react-router.js" />*/}
+          <script src="js/webpack-bootstrap.js"></script>
           <script src="js/vendor.js"></script>
           <script src="js/app.js" />
         </body>

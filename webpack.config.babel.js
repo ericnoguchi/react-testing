@@ -107,13 +107,15 @@ export default {
         }),
 
         new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendor'],
+            names: ['vendor', 'webpack-bootstrap'],
             minChunks: Infinity
         }),
         new ExtractTextPlugin({
             filename: "css/[name].css",
             disable: false
         }),
-        new LiveReloadPlugin()
+        new LiveReloadPlugin({
+            appendScriptTag: true
+        })
     ]
 };
