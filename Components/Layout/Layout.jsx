@@ -18,8 +18,6 @@ export class Layout extends Component {
         <head>
           <title>{custom.title}</title>
           <link rel="stylesheet" type="text/css" href="css/app.css" />
-          <script src="http://localhost:35729/livereload.js"></script>
-
         </head>
         <body>
           <h1>{custom.title}</h1>

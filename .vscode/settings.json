@@ -10,8 +10,16 @@
         "**/.hg": true,
         "**/.DS_Store": true,
         "**/node_modules": false,
-        "**/.vscode": false
+        "**/.vscode": false,
+        "**/About": true
     },
     "editor.formatOnSave": true,
-    "vsicons.presets.angular": false
+    "vsicons.presets.angular": false,
+    "explorer.openEditors.visible": 0,
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx",
+        "xml": {
+            "attr_quotes": "single"
+        }
+    }
 }

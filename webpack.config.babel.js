@@ -11,19 +11,24 @@ const isDevelopment = !isProduction;
 export default {
     //https://webpack.js.org/configuration/devtool/
     devtool: isDevelopment && 'source-map',
+    context: path.resolve(__dirname),
     entry: {
         vendor: [
             "react",
             "react-dom",
-            "react-router"
+            "react-router",
+            "es6-promise",
         ],
-        'app': ['./@Client.js'],
+        app: './@Client.js',
     },
     // https://webpack.js.org/configuration/output/
     output: {
         path: path.resolve(__dirname, '_dist'),
-        publicPath: '',
+        publicPath: '/',
         filename: "js/[name].js"
+    },
+    stats: {
+        assetsSort: "size",
     },
     devServer: {
         contentBase: '_dist'
@@ -73,15 +78,18 @@ export default {
                         "stage-2"
                     ],
                     "plugins": [
+
                         [
                             "transform-runtime",
                             {
-                                "helpers": false, // defaults to true
-                                "polyfill": false, // defaults to true
-                                "regenerator": false, // defaults to true
+                                "helpers": true, // defaults to true
+                                "polyfill": true, // defaults to true
+                                "regenerator": true, // defaults to true
                                 "moduleName": "babel-runtime" // defaults to "babel-runtime"
                             }
-                        ]
+                        ],
+                        // "external-helpers"
+
                     ]
                 }
             },
@@ -92,7 +100,7 @@ export default {
                 loader: 'url-loader',
                 options: {
                     limit: '10000',
-                    name: '/img/[name].[ext]'
+                    name: 'img/[name].[ext]'
                 }
             }
 
@@ -104,6 +112,10 @@ export default {
             "process.env": {
                 BROWSER: JSON.stringify(true)
             }
+        }),
+        new webpack.ProvidePlugin({
+            //   'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
+            //'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
         }),
 
         new webpack.optimize.CommonsChunkPlugin({
