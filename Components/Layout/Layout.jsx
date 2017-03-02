@@ -12,7 +12,7 @@ export class Layout extends Component {
 
   }
   render() {
-    let {custom, children} = this.props;
+    let { custom, children } = this.props;
     return (
       <html>
         <head>

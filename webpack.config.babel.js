@@ -20,12 +20,15 @@ export default {
             "es6-promise",
         ],
         app: './@Client.js',
+        //  e2: './e2.js'
     },
     // https://webpack.js.org/configuration/output/
     output: {
         path: path.resolve(__dirname, '_dist'),
         publicPath: '/',
-        filename: "js/[name].js"
+        filename: "js/[name].js",
+        chunkFilename: "js/[id].chunk.js"
+
     },
     stats: {
         assetsSort: "size",
@@ -35,6 +38,14 @@ export default {
     },
     module: {
         rules: [{
+                test: /\.js$/,
+                exclude: /node_modules/,
+                enforce: 'pre',
+                use: [{
+                    loader: 'eslint-loader'
+                }],
+            },
+            {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
@@ -42,7 +53,7 @@ export default {
                             // https://github.com/webpack-contrib/css-loader
                             loader: 'css-loader',
                             options: {
-                                sourceMap: true
+                                sourceMap: isDevelopment
                             }
                         },
                         {
@@ -56,9 +67,9 @@ export default {
                             loader: 'sass-loader',
                             options: {
                                 outputStyle: 'expanded',
-                                sourceMap: true,
-                                sourceMapContents: true,
-                                includePaths: path.resolve(__dirname, 'common/scss')
+                                sourceMap: isDevelopment,
+                                sourceMapContents: isDevelopment,
+                                includePaths: [path.resolve(__dirname, 'common/scss')]
                             }
                         }
                     ]
@@ -70,6 +81,7 @@ export default {
                 loader: 'babel-loader',
                 options: {
                     babelrc: false,
+                    cacheDirectory: true,
                     presets: [
                         ["es2015", {
                             "modules": false
@@ -124,7 +136,8 @@ export default {
         }),
         new ExtractTextPlugin({
             filename: "css/[name].css",
-            disable: false
+            disable: false,
+            allChunks: true
         }),
         new LiveReloadPlugin({
             appendScriptTag: true

@@ -11,7 +11,7 @@
         "**/.DS_Store": true,
         "**/node_modules": false,
         "**/.vscode": false,
-        "**/About": true
+        "About": true
     },
     "editor.formatOnSave": true,
     "vsicons.presets.angular": false,
