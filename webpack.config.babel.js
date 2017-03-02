@@ -135,7 +135,7 @@ export default {
             minChunks: Infinity
         }),
         new ExtractTextPlugin({
-            filename: "css/[name].css",
+            filename: (getPath) => getPath('css/[name].css'),
             disable: false,
             allChunks: true
         }),
